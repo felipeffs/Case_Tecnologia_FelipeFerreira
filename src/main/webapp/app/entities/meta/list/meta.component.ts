@@ -25,6 +25,9 @@ export class MetaComponent implements OnInit {
   metas = signal<IMeta[]>([]);
   isLoading = false;
 
+  areaSelected: string = '';
+  areasEnem = ['LINGUAGENS_CODIGOS', 'CIENCIAS_HUMANAS', 'CIENCIAS_NATUREZA', 'MATEMATICA'];
+
   sortState = sortStateSignal({});
 
   itemsPerPage = ITEMS_PER_PAGE;
@@ -95,6 +98,17 @@ export class MetaComponent implements OnInit {
 
   protected fillComponentAttributesFromResponseHeader(headers: HttpHeaders): void {
     this.totalItems = Number(headers.get(TOTAL_COUNT_RESPONSE_HEADER));
+  }
+
+  filterByMetas(): void {
+    if (!this.areaSelected) {
+      this.load();
+      return;
+    }
+
+    this.metaService.getMetasByArea(this.areaSelected).subscribe((res: any) => {
+      this.metas.set(res.body || []);
+    });
   }
 
   protected queryBackend(): Observable<EntityArrayResponseType> {

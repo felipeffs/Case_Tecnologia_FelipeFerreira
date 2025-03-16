@@ -44,6 +44,10 @@ export class MetaService {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
+  getMetasByArea(area: string): Observable<EntityArrayResponseType> {
+    return this.http.get<IMeta[]>(`${this.resourceUrl}/by-area/${area}`, { observe: 'response' });
+  }
+
   getMetaIdentifier(meta: Pick<IMeta, 'id'>): number {
     return meta.id;
   }

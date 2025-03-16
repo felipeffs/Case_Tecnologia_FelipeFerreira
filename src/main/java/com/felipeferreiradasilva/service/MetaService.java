@@ -1,6 +1,7 @@
 package com.felipeferreiradasilva.service;
 
 import com.felipeferreiradasilva.domain.Meta;
+import com.felipeferreiradasilva.domain.enumeration.AreaEnem;
 import com.felipeferreiradasilva.repository.MetaRepository;
 import java.util.Optional;
 import org.slf4j.Logger;
@@ -90,6 +91,15 @@ public class MetaService {
      */
     public Page<Meta> findAllWithEagerRelationships(Pageable pageable) {
         return metaRepository.findAllWithEagerRelationships(pageable);
+    }
+
+    /**
+     *
+     *
+     * @return the list of entities.
+     */
+    public Page<Meta> findAllWithArea(Pageable pageable, AreaEnem area) {
+        return metaRepository.findByArea(pageable, area);
     }
 
     /**

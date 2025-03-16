@@ -17,11 +17,18 @@
         <fa-icon icon="plus"></fa-icon>
         <span>Criar novo Meta</span>
       </button>
+
+      <div class="text-end">
+        <label for="filtro-area">Área</label>
+        <select id="filtro-area" [(ngModel)]="areaSelected" (change)="filterByMetas()" class="form-select form-select-sm w-auto">
+          <option value="">Todas</option>
+          <option *ngFor="let area of areasEnem" [value]="area">{{ area }}</option>
+        </select>
+      </div>
     </div>
   </h2>
 
   <jhi-alert-error></jhi-alert-error>
-
   <jhi-alert></jhi-alert>
 
   @if (metas().length === 0) {
@@ -36,21 +43,18 @@
             <th scope="col" jhiSortBy="id">
               <div class="d-flex">
                 <span>Código</span>
-
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
             <th scope="col" jhiSortBy="area">
               <div class="d-flex">
-                <span>Area</span>
-
+                <span>Área</span>
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
             <th scope="col" jhiSortBy="pontuacao">
               <div class="d-flex">
-                <span>Pontuacao</span>
-
+                <span>Pontuação</span>
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>

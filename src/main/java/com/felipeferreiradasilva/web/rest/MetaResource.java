@@ -1,6 +1,7 @@
 package com.felipeferreiradasilva.web.rest;
 
 import com.felipeferreiradasilva.domain.Meta;
+import com.felipeferreiradasilva.domain.enumeration.AreaEnem;
 import com.felipeferreiradasilva.repository.MetaRepository;
 import com.felipeferreiradasilva.service.MetaService;
 import com.felipeferreiradasilva.web.rest.errors.BadRequestAlertException;
@@ -152,6 +153,17 @@ public class MetaResource {
         } else {
             page = metaService.findAll(pageable);
         }
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    @GetMapping("/by-area/{area}")
+    public ResponseEntity<List<Meta>> getMetasByArea(
+        @org.springdoc.core.annotations.ParameterObject Pageable pageable,
+        @PathVariable("area") AreaEnem area
+    ) {
+        Page<Meta> page = metaRepository.findByArea(pageable, area);
+
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

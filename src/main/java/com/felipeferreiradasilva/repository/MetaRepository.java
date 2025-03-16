@@ -1,6 +1,7 @@
 package com.felipeferreiradasilva.repository;
 
 import com.felipeferreiradasilva.domain.Meta;
+import com.felipeferreiradasilva.domain.enumeration.AreaEnem;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
@@ -34,4 +35,7 @@ public interface MetaRepository extends JpaRepository<Meta, Long> {
 
     @Query("select meta from Meta meta left join fetch meta.aluno where meta.id =:id")
     Optional<Meta> findOneWithToOneRelationships(@Param("id") Long id);
+
+    @Query("select meta from Meta meta left join fetch meta.aluno where meta.area = :area")
+    Page<Meta> findByArea(Pageable pageable, @Param("area") AreaEnem area);
 }
