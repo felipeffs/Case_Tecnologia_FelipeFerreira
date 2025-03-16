@@ -1,0 +1,33 @@
+{
+  "annotations": {
+    "changelogDate": "20250316161032"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "area",
+      "fieldType": "AreaEnem",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "LINGUAGENS_CODIGOS,CIENCIAS_HUMANAS,CIENCIAS_NATUREZA,MATEMATICA"
+    },
+    {
+      "fieldName": "pontuacao",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "Meta",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "aluno",
+      "relationshipName": "aluno",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

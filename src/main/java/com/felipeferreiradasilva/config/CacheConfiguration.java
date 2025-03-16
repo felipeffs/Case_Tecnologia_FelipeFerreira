@@ -41,6 +41,9 @@ public class CacheConfiguration {
             createCache(cm, com.felipeferreiradasilva.repository.UserRepository.USERS_BY_LOGIN_CACHE);
             createCache(cm, com.felipeferreiradasilva.repository.UserRepository.USERS_BY_EMAIL_CACHE);
             createCache(cm, com.felipeferreiradasilva.domain.Authority.class.getName());
+            createCache(cm, com.felipeferreiradasilva.domain.Aluno.class.getName());
+            createCache(cm, com.felipeferreiradasilva.domain.Aluno.class.getName() + ".metas");
+            createCache(cm, com.felipeferreiradasilva.domain.Meta.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
